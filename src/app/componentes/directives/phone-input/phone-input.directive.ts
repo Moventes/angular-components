@@ -25,7 +25,9 @@ export class PhoneInputDirective implements ControlValueAccessor {
     this.formatNumber(value);
   }
 
-  constructor(private element: ElementRef, private renderer: Renderer2) { }
+  constructor(private element: ElementRef, private renderer: Renderer2) {
+    console.log(this.element);
+  }
 
   formatNumber(val: string) {
     const formattedNumber: { [k: string]: any } = {};
@@ -39,12 +41,12 @@ export class PhoneInputDirective implements ControlValueAccessor {
     }
     this.propagateChange(formattedNumber.international);
     this.renderer.setProperty(this.element.nativeElement, 'value', formattedNumber.national);
-
   }
 
   writeValue(value: any): void {
-    console.log('write');
+    console.log('write value : ', value);
     this.formatNumber(value);
+    console.log(this.element);
   }
 
   registerOnChange(fn) {

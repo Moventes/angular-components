@@ -1,2 +1,7 @@
 <input [(ngModel)]="plop" appPhoneInput>
 <p>{{plop}}</p>
+
+<form [formGroup]="form">
+  <input formControlName="phone" appPhoneInput>
+</form>
+<p>{{phone}}</p>
