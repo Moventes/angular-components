@@ -26,7 +26,6 @@ export class PhoneInputDirective implements ControlValueAccessor {
   }
 
   constructor(private element: ElementRef, private renderer: Renderer2) {
-    console.log(this.element);
   }
 
   formatNumber(val: string) {
@@ -50,6 +49,7 @@ export class PhoneInputDirective implements ControlValueAccessor {
   }
 
   registerOnChange(fn) {
+    console.log(fn);
     this.propagateChange = fn;
   }
 
