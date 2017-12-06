@@ -8,8 +8,8 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 })
 export class AddressInputComponent implements OnInit {
   form: FormGroup;
-  address1: any;
-  address2: any;
+  address1 = '';
+  address2 = '';
 
   constructor(private fb: FormBuilder) { }
 

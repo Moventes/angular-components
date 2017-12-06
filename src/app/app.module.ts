@@ -13,6 +13,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AddressInputComponent } from './pages/address-input/address-input.component';
 import { PhoneInputComponent } from './pages/phone-input/phone-input.component';
 import { ErrorDisplayComponent } from './pages/error-display/error-display.component';
+import { RadioListComponent } from './pages/radio-list/radio-list.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -24,7 +25,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     AddressInputComponent,
     PhoneInputComponent,
-    ErrorDisplayComponent
+    ErrorDisplayComponent,
+    RadioListComponent
   ],
   imports: [
     BrowserModule,
