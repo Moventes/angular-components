@@ -1,0 +1,21 @@
+<h1>Phone input</h1>
+<h2>Template driven</h2>
+<form name="templateForm">
+  <label>
+    Phone
+    <input type="text" [(ngModel)]="phone1" name="phone1" required minlength="12" maxlength="12" appPhoneInput>
+  </label>
+  <p>model value : {{ phone1 }}</p>
+  <p>Errors : </p>
+  <p *appErrorDisplay="let error">{{ error | translate }}</p>
+</form>
+<h2>Model driven driven</h2>
+<form [formGroup]="form">
+  <label>
+    Phone
+    <input formControlName="phone2" appPhoneInput>
+  </label>
+  <p>model value : {{ form.get('phone2').value }}</p>
+  <p>Errors : </p>
+  <p *appErrorDisplay="'phone2'; let error">{{ error | translate }}</p>
+</form>

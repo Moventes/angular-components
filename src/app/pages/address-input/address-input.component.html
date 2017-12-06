@@ -1,0 +1,21 @@
+<h1>Address input</h1>
+<h2>Template driven</h2>
+<form name="templateForm">
+  <label>
+    Address
+    <input type="text" [(ngModel)]="address1" name="address1" required appAddressInput>
+  </label>
+  <p>model value : {{ address1 | json }}</p>
+  <p>Errors : </p>
+  <p *appErrorDisplay="let error">{{ error | translate }}</p>
+</form>
+<h2>Model driven driven</h2>
+<form [formGroup]="form">
+  <label>
+    Address
+    <input formControlName="address2" appAddressInput>
+  </label>
+  <p>model value : {{ form.get('address2').value | json }}</p>
+  <p>Errors : </p>
+  <p *appErrorDisplay="'address2'; let error">{{ error | translate }}</p>
+</form>

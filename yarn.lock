@@ -179,6 +179,14 @@
     source-map "^0.5.6"
     tree-kill "^1.0.0"
 
+"@ngx-translate/core@^9.0.1":
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/core/-/core-9.0.1.tgz#000f2d863c4c94c818e1416ef43cca2c5c0c5848"
+
+"@ngx-translate/http-loader@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/http-loader/-/http-loader-2.0.0.tgz#9c16d07cd070c67ada270a2e940281eb826b3f43"
+
 "@schematics/angular@~0.1.0":
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-0.1.8.tgz#2c98cda013a2b87ff457a749775b95b3a2475698"
