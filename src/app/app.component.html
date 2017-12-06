@@ -1,15 +1,28 @@
+<label>Template driven</label>
 <input type="text" [(ngModel)]="phone1" appPhoneInput>
 <p>{{phone1}}</p>
-
-<form [formGroup]="form">
-  <input formControlName="phone2" appPhoneInput>
-</form>
-<p>{{phone2}}</p>
 
 <input type="text" [(ngModel)]="address1" appAddressInput>
 <p>{{address1 | json}}</p>
 
+<label>Form driven</label>
 <form [formGroup]="form">
+  <input formControlName="phone2" appPhoneInput>
+  <p>{{form.get('phone2').value | json}}</p>
   <input formControlName="address2" appAddressInput>
+  <p>{{form.get('address2').value | json}}</p>
 </form>
-<p>{{address2 | json}}</p>
+<form name="templateForm">
+  <label>Template</label>
+  <input type="text" name="string" [(ngModel)]="string" appTextInput>
+</form>
+<p>{{ templateForm | json }}</p>
+<p>{{ string }}</p>
+<form [formGroup]="testFormGroup">
+  <label>Model</label>
+  <input type="text" formControlName="string" appTextInput>
+  <p *appErrorDisplay="'string'; let error">{{ error | translate }}</p>
+  <h1 *appErrorDisplay="let error">{{ error | translate }}</h1>
+</form>
+<p>{{ testFormGroup.status }}</p>
+<p>{{ testFormGroup.get('string').value }}</p>
