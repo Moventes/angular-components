@@ -1,6 +1,10 @@
 {
   "recommendations": [
     "eg2.tslint",
-    "msjsdiag.debugger-for-chrome"
+    "msjsdiag.debugger-for-chrome",
+    "eamodio.gitlens",
+    "johnpapa.angular2",
+    "shinnn.stylelint",
+    "steoates.autoimport"
   ]
 }
