@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RadioListComponent } from './radio-list.component';
+import { ForOfComponent } from './for-of.component';
 
-describe('RadioListComponent', () => {
-  let component: RadioListComponent;
-  let fixture: ComponentFixture<RadioListComponent>;
+describe('ForOfComponent', () => {
+  let component: ForOfComponent;
+  let fixture: ComponentFixture<ForOfComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RadioListComponent ]
+      declarations: [ForOfComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RadioListComponent);
+    fixture = TestBed.createComponent(ForOfComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

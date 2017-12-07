@@ -3,7 +3,8 @@ import { ControlValueAccessor } from '@angular/forms/src/directives/control_valu
 import { NG_VALUE_ACCESSOR, NgControl } from '@angular/forms';
 
 @Directive({
-  selector: '[appTextInput]',
+  // tslint:disable-next-line:directive-selector
+  selector: '[mvTextInput]',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

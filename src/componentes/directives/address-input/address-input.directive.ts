@@ -3,7 +3,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 declare var google: any;
 
 @Directive({
-  selector: '[appAddressInput]',
+  selector: '[mvAddressInput]',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
