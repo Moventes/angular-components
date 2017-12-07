@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Directive, forwardRef, Input, TemplateRef, ViewContainerRef, Renderer2 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, ControlContainer } from '@angular/forms';
