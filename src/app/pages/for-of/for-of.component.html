@@ -1,0 +1,69 @@
+<h1>Radio list</h1>
+<pre>
+    enum :
+      DOG = 'ANIMAL.DOG',
+      CAT = 'ANIMAL.CAT',
+      BIRD = 'ANIMAL.BIRD'
+</pre>
+<h2>Template driven</h2>
+<form name="templateForm">
+  <label>
+    Radio list Enum
+    <!-- <input type="text" [(ngModel)]="address1" name="address1" required mvAddressInput> -->
+    <select [(ngModel)]="select1Enum" name="select1Enum" required>
+      <option *mvForOf="enum; let return" [value]="return.key">{{ return.value | translate }}</option>
+    </select>
+  </label>
+  <p>model value : {{ select1Enum | json }}</p>
+  <label>
+    Radio list Observable
+    <!-- <input type="text" [(ngModel)]="address1" name="address1" required mvAddressInput> -->
+    <select [(ngModel)]="select1Observable" name="select1Observable" required>
+      <option *mvForOf="observable; let return" [value]="return.key">{{ return.value | translate }}</option>
+    </select>
+  </label>
+  <p>model value : {{ select1Observable | json }}</p>
+  <label>
+    Radio list Array
+    <!-- <input type="text" [(ngModel)]="address1" name="address1" required mvAddressInput> -->
+    <select [(ngModel)]="select1Array" name="select1Array" required>
+      <option *mvForOf="array; let return" [value]="return.key">{{ return.value | translate }}</option>
+    </select>
+  </label>
+  <p>model value : {{ select1Array | json }}</p>
+  <p>Errors : </p>
+  <p *mvErrorDisplay="let error">{{ error | translate }}</p>
+</form>
+<h2>Model driven</h2>
+<form [formGroup]="form">
+  <label>
+    Radio list Enum
+    <!-- <input formControlName="address2" mvAddressInput> -->
+    <select formControlName="select2Enum">
+      <option *mvForOf="enum; let return" [value]="return.key">{{ return.value | translate }}</option>
+    </select>
+  </label>
+  <p>model value : {{ form.get('select2Enum').value | json }}</p>
+  <p>Errors : </p>
+  <p *mvErrorDisplay="'select2Enum'; let error">{{ error | translate }}</p>
+  <label>
+    Radio list Observable
+    <!-- <input formControlName="address2" mvAddressInput> -->
+    <select formControlName="select2Observable">
+      <option *mvForOf="observable; let return" [value]="return.key">{{ return.value | translate }}</option>
+    </select>
+  </label>
+  <p>model value : {{ form.get('select2Observable').value | json }}</p>
+  <p>Errors : </p>
+  <p *mvErrorDisplay="'select2Observable'; let error">{{ error | translate }}</p>
+  <label>
+    Radio list Array
+    <!-- <input formControlName="address2" mvAddressInput> -->
+    <select formControlName="select2Array">
+      <option *mvForOf="array; let return" [value]="return.key">{{ return.value | translate }}</option>
+    </select>
+  </label>
+  <p>model value : {{ form.get('select2Array').value | json }}</p>
+  <p>Errors : </p>
+  <p *mvErrorDisplay="'select2Array'; let error">{{ error | translate }}</p>
+</form>

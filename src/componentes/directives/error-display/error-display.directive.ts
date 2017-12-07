@@ -3,7 +3,7 @@ import { ControlContainer } from '@angular/forms';
 import { OnInit, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Directive({
-  selector: '[appErrorDisplay]'
+  selector: '[mvErrorDisplay]'
 })
 export class ErrorDisplayDirective implements OnInit, OnDestroy {
   private target;
@@ -12,7 +12,7 @@ export class ErrorDisplayDirective implements OnInit, OnDestroy {
   private template;
 
   @Input()
-  set appErrorDisplay(target) {
+  set mvErrorDisplay(target) {
     if (target) {
       this.target = target;
       console.log('target : ', this.target);

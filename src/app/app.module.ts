@@ -8,12 +8,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppComponent } from './app.component';
 import { RoutingModule } from './modules/routing/routing.module';
-import { ComponentesModule } from './componentes/componentes.module';
+import { ComponentesModule } from '../componentes/componentes.module';
 import { HomeComponent } from './pages/home/home.component';
 import { AddressInputComponent } from './pages/address-input/address-input.component';
 import { PhoneInputComponent } from './pages/phone-input/phone-input.component';
 import { ErrorDisplayComponent } from './pages/error-display/error-display.component';
-import { RadioListComponent } from './pages/radio-list/radio-list.component';
+import { ForOfComponent } from './pages/for-of/for-of.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -26,7 +26,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AddressInputComponent,
     PhoneInputComponent,
     ErrorDisplayComponent,
-    RadioListComponent
+    ForOfComponent
   ],
   imports: [
     BrowserModule,

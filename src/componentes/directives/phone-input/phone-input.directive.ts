@@ -6,7 +6,8 @@ const PhoneNumberUtil = libPhoneNumber.PhoneNumberUtil;
 const PhoneNumberFormat = libPhoneNumber.PhoneNumberFormat;
 
 @Directive({
-  selector: '[appPhoneInput]',
+  // tslint:disable-next-line:directive-selector
+  selector: '[mvPhoneInput]',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

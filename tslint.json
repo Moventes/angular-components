@@ -118,7 +118,10 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      [
+        "app",
+        "mv"
+      ],
       "camelCase"
     ],
     "component-selector": [

@@ -3,19 +3,19 @@
 <form name="templateForm">
   <label>
     Address
-    <input type="text" [(ngModel)]="address1" name="address1" required appAddressInput>
+    <input type="text" [(ngModel)]="address1" name="address1" required mvAddressInput>
   </label>
   <p>model value : {{ address1 | json }}</p>
   <p>Errors : </p>
-  <p *appErrorDisplay="let error">{{ error | translate }}</p>
+  <p *mvErrorDisplay="let error">{{ error | translate }}</p>
 </form>
 <h2>Model driven driven</h2>
 <form [formGroup]="form">
   <label>
     Address
-    <input formControlName="address2" appAddressInput>
+    <input formControlName="address2" mvAddressInput>
   </label>
   <p>model value : {{ form.get('address2').value | json }}</p>
   <p>Errors : </p>
-  <p *appErrorDisplay="'address2'; let error">{{ error | translate }}</p>
+  <p *mvErrorDisplay="'address2'; let error">{{ error | translate }}</p>
 </form>
