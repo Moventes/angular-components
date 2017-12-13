@@ -5,6 +5,29 @@ import { Directive, forwardRef, Input, TemplateRef, ViewContainerRef, Renderer2 
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, ControlContainer } from '@angular/forms';
 import { ISubscription } from 'rxjs/Subscription';
 
+/**
+ * This structural directive acts in the same way as ngFor but it is able to iterate threw Observable, Array or Enum.
+ *
+ * @example
+ * <select [(ngModel)]="select1Enum" name="select1Enum" required>
+ *       <option *mvForOf="enum; let return" [value]="return.key">{{ return.value | translate }}</option>
+ *     </select>
+ * <select [(ngModel)]="select1Observable" name="select1Observable" required>
+ *       <option *mvForOf="observable; let return" [value]="return.key">{{ return.value | translate }}</option>
+ *     </select>
+ * <select [(ngModel)]="select1Array" name="select1Array" required>
+ *       <option *mvForOf="array; let return" [value]="return.key">{{ return.value | translate }}</option>
+ *     </select>
+ * <select formControlName="select2Enum">
+ *       <option *mvForOf="enum; let return" [value]="return.key">{{ return.value | translate }}</option>
+ *     </select>
+ * <select formControlName="select2Observable">
+ *       <option *mvForOf="observable; let return" [value]="return.key">{{ return.value | translate }}</option>
+ *     </select>
+ * <select formControlName="select2Array">
+ *       <option *mvForOf="array; let return" [value]="return.key">{{ return.value | translate }}</option>
+ *     </select>
+ */
 @Directive({
   selector: '[mvForOf]',
   providers: [
@@ -15,11 +38,21 @@ import { ISubscription } from 'rxjs/Subscription';
     }
   ]
 })
-export class ForOfDirective implements /*ControlValueAccessor,*/ OnInit {
+export class ForOfDirective implements OnInit {
+  /**
+   * Array based on the list provided that will be used to construct the list in the DOM
+   */
   private list: any[];
+
+  /**
+   * subscription to athe observable in case the is one.
+   */
   private subscriber: ISubscription;
 
 
+  /**
+   * Creates th array based on the list provided to the directive
+   */
   @Input()
   set mvForOf(list) {
     console.log('list', list);
@@ -47,6 +80,13 @@ export class ForOfDirective implements /*ControlValueAccessor,*/ OnInit {
     }
   }
 
+  /**
+   * Directive constructor
+   * @param templateRef {TemplateRef<any>} Provides the tag containing the directive
+   * @param viewContainer {ViewContainerRef} Provides the DOM element that will contain the errors
+   * @param controlContainer {ControlContainer} Provides the  form inside of which the directive is provided
+   * @param renderer {Renderer2} Angular provider which aims to impact value on the DOM
+   */
   constructor(
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef,
@@ -54,19 +94,19 @@ export class ForOfDirective implements /*ControlValueAccessor,*/ OnInit {
     private renderer: Renderer2
   ) { }
 
+  /**
+   * Called when the directive is initialized.
+   * Repeats the template for each element of the list.
+   */
   ngOnInit() {
     this.viewContainer.clear();
-    console.log('oninit', this.list);
     for (const element of this.list) {
-      console.log('element', element);
-      console.log('template', this.templateRef);
       const embeddedView = this.viewContainer.createEmbeddedView(
         this.templateRef,
         {
           $implicit: element
         }
       );
-      console.log(embeddedView);
     }
   }
 }

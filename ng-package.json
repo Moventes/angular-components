@@ -3,6 +3,7 @@
   "lib": {
     "entryFile": "public_api.ts",
     "externals": {
+      "@angular/core": "@angular/core",
       "@ngx-translate/core": "@ngx-translate/core",
       "@ngx-translate/http-loader": "@ngx-translate/http-loader",
       "google-libphonenumber": "google-libphonenumber"
