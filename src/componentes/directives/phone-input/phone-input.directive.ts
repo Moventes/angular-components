@@ -48,7 +48,7 @@ export class PhoneInputDirective implements ControlValueAccessor {
   /**
    * Listener that will call format function on each input in the host.
    *
-   * @param value the value typed in the host
+   * @param value the value typed in the host input
    */
   @HostListener('input', ['$event.target.value'])
   input(value) {
