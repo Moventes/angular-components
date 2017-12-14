@@ -4,11 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
+import { ComponentesCommonModule } from 'common-components';
 
 import { AppComponent } from './app.component';
 import { RoutingModule } from './modules/routing/routing.module';
-import { ComponentesModule } from '../componentes/componentes.module';
+import { ComponentesAngularModule } from '../componentes/componentes.module';
 import { HomeComponent } from './pages/home/home.component';
 import { AddressInputComponent } from './pages/address-input/address-input.component';
 import { PhoneInputComponent } from './pages/phone-input/phone-input.component';
@@ -41,7 +41,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     RoutingModule,
-    ComponentesModule
+    ComponentesAngularModule,
+    ComponentesCommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
