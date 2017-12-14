@@ -43,7 +43,7 @@ export class PhoneInputDirective implements ControlValueAccessor {
   /**
    * Phone number object in google format
    */
-  private number;
+  private number: any;
 
   /**
    * Listener that will call format function on each input in the host.
@@ -69,7 +69,7 @@ export class PhoneInputDirective implements ControlValueAccessor {
    *
    * @param val {string} Value from the input
    */
-  formatNumber(val: string) {
+  private formatNumber(val: string) {
     const formattedNumber: { [k: string]: any } = {};
     try {
       this.number = this.phoneUtil.parse(val, 'FR');
@@ -90,9 +90,7 @@ export class PhoneInputDirective implements ControlValueAccessor {
    * @param value Value given from the model
    */
   writeValue(value: any): void {
-    console.log('write value : ', value);
     this.formatNumber(value);
-    console.log(this.element);
   }
 
   /**
@@ -102,7 +100,6 @@ export class PhoneInputDirective implements ControlValueAccessor {
    * @param fn {function} Angular internal function
    */
   registerOnChange(fn) {
-    console.log(fn);
     this.propagateChange = fn;
   }
 

@@ -1,14 +1,16 @@
 import { Directive, forwardRef, ElementRef, Renderer2, HostListener, NgZone } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
+import { Address, AddressDetails } from 'common-components';
+
 /**
  * Google declaration provides access to Google maps api
  */
 declare var google: any;
 
 /**
- * This directive uses Google maps API to generate a list of propositions based on the value of the parent container.
- * When a proposition is selected, the directive returns an addres object.
+ * This directive uses Google Maps to get a list of places matching the value of the parent container.
+ * When a proposition is selected, the directive returns an object of type {@link Address}.
  *
  * @example
  * <h2>Template driven</h2>
@@ -40,28 +42,21 @@ export class AddressInputDirective implements ControlValueAccessor {
   /**
    * Google provided autocomplete service
    */
-  autocomplete: any;
+  private autocomplete: any;
 
   /**
    * Displayed address
    */
-  _address;
+  private _address: string;
 
   /**
-   * Gets the displayed _address
-   */
-  get address() {
-    return this._address;
-  }
-
-  /**
-   * Sets the displayed _address.
+   * Sets the displayed address.
    * Propagates the address object to the model.
    */
-  set address(value) {
-    this._address = value.formattedAddress ? value.formattedAddress : 'no formatted address';
+  set address(newAddress: Address) {
+    this._address = newAddress.formattedAddress ? newAddress.formattedAddress : 'no formatted address';
     this.renderer.setProperty(this.element.nativeElement, 'value', this._address);
-    this.onChange(value);
+    this.onChange(newAddress);
   }
 
   /**
@@ -71,7 +66,6 @@ export class AddressInputDirective implements ControlValueAccessor {
    * @param ngZone {NgZone} Angular provider which helps running Google's function in Angular zone
    */
   constructor(private element: ElementRef, private renderer: Renderer2, private ngZone: NgZone) {
-    console.log('constructor');
     this.autocomplete = new google.maps.places.Autocomplete(
       (this.element.nativeElement),
       { types: ['geocode'] }
@@ -88,11 +82,11 @@ export class AddressInputDirective implements ControlValueAccessor {
    * Gets the place details from google autocomplete and format them into an address object.
    * Sets the address with this object.
    */
-  selectAddress() {
-    const place = this.autocomplete.getPlace();
-    console.log('select address : ', place);
-    const addressValue: { [k: string]: any } = {};
-    const addressDetails: { [key: string]: any } = {};
+  private selectAddress() {
+    const place: google.maps.GeocoderResult = this.autocomplete.getPlace();
+    const addressValue: any = {};
+    const addressDetails: any = {};
+
     for (const component of place.address_components) {
       if (component.types[0] === 'street_number') {
         addressDetails.streetNumber = component.long_name;
@@ -106,11 +100,13 @@ export class AddressInputDirective implements ControlValueAccessor {
         addressDetails.country = component.long_name;
       }
     }
+
     addressValue.latitude = place.geometry.location.lat();
     addressValue.longitude = place.geometry.location.lng();
     addressValue.formattedAddress = place.formatted_address;
     addressValue.googlePlaceId = place.place_id;
     addressValue.addressDetails = addressDetails;
+
     this.address = addressValue;
   }
 
@@ -120,8 +116,7 @@ export class AddressInputDirective implements ControlValueAccessor {
    *
    * @param value Value given from the model
    */
-  writeValue(value: any): void {
-    console.log('writevalue');
+  writeValue(value: Address): void {
     if (value) {
       this.renderer.setProperty(this.element.nativeElement, 'value', value.formattedAddress ? value.formattedAddress : '');
       this.address = value;
@@ -137,7 +132,6 @@ export class AddressInputDirective implements ControlValueAccessor {
    * @param fn {function} Angular internal function
    */
   registerOnChange(fn: any): void {
-    console.log('registerOnChange');
     this.onChange = fn;
   }
 
@@ -145,9 +139,7 @@ export class AddressInputDirective implements ControlValueAccessor {
    * This method is part of ControlValueAccessor interface.
    * Not used here
    */
-  registerOnTouched(fn: any): void {
-    console.log('registerOnTouched');
-  }
+  registerOnTouched(fn: any): void { }
 
   /**
    * Container for the propagation function.

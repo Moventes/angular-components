@@ -16,11 +16,11 @@ export enum EnumOfChoices {
 
 
 @Component({
-  selector: 'app-for-of',
-  templateUrl: './for-of.component.html',
-  styleUrls: ['./for-of.component.scss']
+  selector: 'app-mv-iterator',
+  templateUrl: './mv-iterator.component.html',
+  styleUrls: ['./mv-iterator.component.scss']
 })
-export class ForOfComponent implements OnInit {
+export class MvIteratorComponent implements OnInit {
   form: FormGroup;
 
   array: string[] = ['Chien', 'Chat', 'Oiseau', 'Chtulu'];
@@ -35,8 +35,8 @@ export class ForOfComponent implements OnInit {
     this.observable = Observable.of(this.array);
     this.form = this.fb.group({
       select2Enum: new FormControl(null, [Validators.required, EnumValidator.isElementOf(EnumOfChoices)]),
-      select2Observable: new FormControl(null, [Validators.required, EnumValidator.isElementOf(EnumOfChoices)]),
-      select2Array: new FormControl(null, [Validators.required, EnumValidator.isElementOf(EnumOfChoices)]),
+      select2Observable: new FormControl(null, [Validators.required]),
+      select2Array: new FormControl(null, [Validators.required]),
     });
   }
 }

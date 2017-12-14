@@ -1,6 +1,6 @@
 import { Directive, Input, TemplateRef, ViewContainerRef, Renderer2 } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { OnInit, OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { OnInit, OnDestroy } from '@angular/core';
 
 /**
  * This structural directive provides a way to display errors from a control or from the full form.
@@ -72,8 +72,7 @@ export class ErrorDisplayDirective implements OnInit, OnDestroy {
   ) { }
 
   /**
-   * Called when the directive is initialized.
-   * Subscribes to the changes in form/control.
+   * @inheritDoc
    */
   ngOnInit() {
     if (!this.target) {
@@ -88,10 +87,17 @@ export class ErrorDisplayDirective implements OnInit, OnDestroy {
   }
 
   /**
+   * @inheritDoc
+   */
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  /**
    * Toggle the visibility of the errors list
    * @param target the control or the form observed
    */
-  toggleVisibility(target) {
+  private toggleVisibility(target) {
     if (!target.valid && !this.hasView) {
       this.updateErrorList(target);
       this.hasView = true;
@@ -107,7 +113,7 @@ export class ErrorDisplayDirective implements OnInit, OnDestroy {
    * Creates and updates the DOM with the errors or empties it.
    * @param target the control or the form observed
    */
-  updateErrorList(target) {
+  private updateErrorList(target) {
     this.viewContainer.clear();
     if (this.target) {
       // tslint:disable-next-line:forin
@@ -129,13 +135,5 @@ export class ErrorDisplayDirective implements OnInit, OnDestroy {
         }
       }
     }
-  }
-
-  /**
-   * Called when the directive is destroyed.
-   * Unsubscribes to the changes in form/control.
-   */
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 }

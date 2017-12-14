@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { } from '@types/googlemaps';
 import { PhoneInputDirective } from './directives/phone-input/phone-input.directive';
 import { AddressInputDirective } from './directives/address-input/address-input.directive';
 import { ErrorDisplayDirective } from './directives/error-display/error-display.directive';
