@@ -1,32 +1,50 @@
-# AngularComponents
+# angular-components
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.3.
+This ionic project hosts the angular-components library and provides a testing application for them.
 
-/!\ This project is NOT compatible with node.js version 8.9.1 and probably node.js 8 in general.
+## Setup
 
-## Development server
+```bash
+npm install
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The library uses `common-components`, so you may have to first install and link it
 
-## Code scaffolding
+```bash
+npm link common-components
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## To run the application
 
-## Build
+```bash
+ng serve
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## To build the library
 
-## Running unit tests
+```bash
+npm run packagr
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+This will create a `dist` directory which may be linked or published with npm
 
-## Running end-to-end tests
+## To link the library once it is built
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```bash
+npm link
+```
 
-## Further help
+## TIP: commands can be chained with &&
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```bash
+npm install && npm run packagr && cd dist && npm link
+```
+
+## To add the library to a project
+
+```bash
+npm link angular-components
+```
 
 ## Build documentation
 
@@ -34,7 +52,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 npm run compodoc
 ```
 
-## Consult documentation
+## Serve documentation
 
 ```bash
 npm run compodoc-serve
