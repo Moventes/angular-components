@@ -14,7 +14,11 @@
     "compodoc-serve": "./node_modules/.bin/compodoc -s"
   },
   "private": true,
+  "directories": {
+    "bin": "./dist"
+  },
   "dependencies": {
+    "common-components": "git+https://gitlab.com/RnD-moventes/componentes/common-components.git",
     "@angular/animations": "^5.0.0",
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
