@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { ComponentesCommonModule } from 'common-components';
+import { ComponentesCommonModule } from 'mv-common-components';
 
 import { AppComponent } from './app.component';
 import { RoutingModule } from './modules/routing/routing.module';

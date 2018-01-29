@@ -5,7 +5,7 @@ import { PhoneInputDirective } from './directives/phone-input/phone-input.direct
 import { AddressInputDirective } from './directives/address-input/address-input.directive';
 import { ErrorDisplayDirective } from './directives/error-display/error-display.directive';
 
-export * from 'common-components';
+export * from 'mv-common-components';
 
 @NgModule({
   imports: [

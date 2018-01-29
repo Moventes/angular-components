@@ -1,5 +1,5 @@
 {
-  "name": "angular-components",
+  "name": "mv-angular-components",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -9,11 +9,14 @@
     "test": "ng lint && ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "link": "npm link mv-common-components",
     "packagr": "ng-packagr -p ng-package.json && cd dist && yarn link",
+    "packagr:npm": "ng-packagr -p ng-package.json && cd dist && npm link",
     "compodoc": "./node_modules/.bin/compodoc -p tsconfig.json",
     "compodoc-serve": "./node_modules/.bin/compodoc -s"
   },
-  "private": true,
+  "private": false,
+  "public": true,
   "dependencies": {
     "@angular/animations": "^5.0.0",
     "@angular/common": "^5.0.0",
@@ -29,6 +32,7 @@
     "@types/googlemaps": "^3.30.2",
     "core-js": "^2.4.1",
     "google-libphonenumber": "^3.0.9",
+    "mv-common-components": "0.0.1",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },
