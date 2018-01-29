@@ -1,0 +1,9 @@
+{
+  "editor.tabSize": 2,
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "tslint.autoFixOnSave": true,
+  "tslint.enable": true,
+  "tslint.jsEnable": true,
+  "editor.trimAutoWhitespace": true
+}
