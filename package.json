@@ -15,9 +15,12 @@
     "compodoc": "./node_modules/.bin/compodoc -p tsconfig.json",
     "compodoc-serve": "./node_modules/.bin/compodoc -s"
   },
-  "private": false,
-  "public": true,
+  "private": true,
+  "directories": {
+    "bin": "./dist"
+  },
   "dependencies": {
+    "common-components": "git+ssh://git@gitlab.com:RnD-moventes/componentes/common-components.git",
     "@angular/animations": "^5.0.0",
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
