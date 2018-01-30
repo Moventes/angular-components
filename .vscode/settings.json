@@ -5,5 +5,6 @@
   "tslint.autoFixOnSave": true,
   "tslint.enable": true,
   "tslint.jsEnable": true,
-  "editor.trimAutoWhitespace": true
+  "editor.trimAutoWhitespace": true,
+  "git.ignoreLimitWarning": true
 }

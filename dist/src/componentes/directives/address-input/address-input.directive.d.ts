@@ -1,26 +1,6 @@
 import { ElementRef, Renderer2, NgZone } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { Address } from 'mv-common-components';
-/**
- * This directive uses Google Maps to get a list of places matching the value of the parent container.
- * When a proposition is selected, the directive returns an object of type {@link Address}.
- *
- * @example
- * <h2>Template driven</h2>
- *   <form name="templateForm">
- *     <label>
- *       Address
- *       <input type="text" [(ngModel)]="address1" name="address1" required mvAddressInput>
- *     </label>
- *   </form>
- * <h2>Model driven driven</h2>
- * <form [formGroup]="form">
- *   <label>
- *     Address
- *     <input formControlName="address2" mvAddressInput>
- *   </label>
- * </form>
- */
 export declare class AddressInputDirective implements ControlValueAccessor {
     private element;
     private renderer;

@@ -1,16 +1,5 @@
 import { ControlValueAccessor } from '@angular/forms';
 import { ElementRef, Renderer2 } from '@angular/core';
-/**
- * This directive aims to provide a way to display a national phone number while you're typing
- * but will return an international (E164) phone number.
- * It's based on google-libphonenumber.
- *
- * @example
- * // template driven
- * <input type="text" [(ngModel)]="phone1" name="phone1" required minlength="12" maxlength="12" mvPhoneInput>
- * // model driven
- * <input formControlName="phone2" mvPhoneInput>
- */
 export declare class PhoneInputDirective implements ControlValueAccessor {
     private element;
     private renderer;

@@ -23,7 +23,11 @@ const PhoneNumberFormat$1 = PhoneNumberFormat;
  * <input type="text" [(ngModel)]="phone1" name="phone1" required minlength="12" maxlength="12" mvPhoneInput>
  * // model driven
  * <input formControlName="phone2" mvPhoneInput>
+ * @return {?}
  */
+function returnPhone() {
+    return PhoneInputDirective;
+}
 class PhoneInputDirective {
     /**
      * Directive constructor
@@ -106,7 +110,7 @@ PhoneInputDirective.decorators = [
                 providers: [
                     {
                         provide: NG_VALUE_ACCESSOR,
-                        useExisting: forwardRef(() => PhoneInputDirective),
+                        useExisting: forwardRef(returnPhone),
                         multi: true
                     }
                 ]
@@ -142,7 +146,11 @@ PhoneInputDirective.propDecorators = {
  *     <input formControlName="address2" mvAddressInput>
  *   </label>
  * </form>
+ * @return {?}
  */
+function returnAddress() {
+    return AddressInputDirective;
+}
 class AddressInputDirective {
     /**
      * Directive constructor
@@ -252,7 +260,7 @@ AddressInputDirective.decorators = [
                 providers: [
                     {
                         provide: NG_VALUE_ACCESSOR,
-                        useExisting: forwardRef(() => AddressInputDirective),
+                        useExisting: forwardRef(returnAddress),
                         multi: true
                     }
                 ]
@@ -798,7 +806,6 @@ var Subscriber$1 = (function (_super) {
                 }
                 if (typeof destinationOrNext === 'object') {
                     if (destinationOrNext instanceof Subscriber) {
-                        this.syncErrorThrowable = destinationOrNext.syncErrorThrowable;
                         this.destination = destinationOrNext;
                         this.destination.add(this);
                     }
@@ -1250,7 +1257,7 @@ var Observable$2$1 = (function () {
             operator.call(sink, this.source);
         }
         else {
-            sink.add(this.source || !sink.syncErrorThrowable ? this._subscribe(sink) : this._trySubscribe(sink));
+            sink.add(this.source ? this._subscribe(sink) : this._trySubscribe(sink));
         }
         if (sink.syncErrorThrowable) {
             sink.syncErrorThrowable = false;
@@ -2751,6 +2758,15 @@ var mergeAll_1$1 = {
     mergeAll: mergeAll_2$1
 };
 /* tslint:enable:max-line-length */
+function merge() {
+    var observables = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        observables[_i - 0] = arguments[_i];
+    }
+    return function (source) { return source.lift.call(mergeStatic.apply(void 0, [source].concat(observables))); };
+}
+var merge_2 = merge;
+/* tslint:enable:max-line-length */
 /**
  * Creates an output Observable which concurrently emits all values from every
  * given input Observable.
@@ -2811,7 +2827,7 @@ var mergeAll_1$1 = {
  * @name merge
  * @owner Observable
  */
-function merge$1() {
+function mergeStatic() {
     var observables = [];
     for (var _i = 0; _i < arguments.length; _i++) {
         observables[_i - 0] = arguments[_i];
@@ -2833,65 +2849,6 @@ function merge$1() {
     }
     return mergeAll_1$1.mergeAll(concurrent)(new ArrayObservable_1$1.ArrayObservable(observables, scheduler));
 }
-var merge_2$1 = merge$1;
-var merge_1 = {
-    merge: merge_2$1
-};
-/* tslint:enable:max-line-length */
-/**
- * Creates an output Observable which concurrently emits all values from every
- * given input Observable.
- *
- * <span class="informal">Flattens multiple Observables together by blending
- * their values into one Observable.</span>
- *
- * <img src="./img/merge.png" width="100%">
- *
- * `merge` subscribes to each given input Observable (either the source or an
- * Observable given as argument), and simply forwards (without doing any
- * transformation) all the values from all the input Observables to the output
- * Observable. The output Observable only completes once all input Observables
- * have completed. Any error delivered by an input Observable will be immediately
- * emitted on the output Observable.
- *
- * @example <caption>Merge together two Observables: 1s interval and clicks</caption>
- * var clicks = Rx.Observable.fromEvent(document, 'click');
- * var timer = Rx.Observable.interval(1000);
- * var clicksOrTimer = clicks.merge(timer);
- * clicksOrTimer.subscribe(x => console.log(x));
- *
- * @example <caption>Merge together 3 Observables, but only 2 run concurrently</caption>
- * var timer1 = Rx.Observable.interval(1000).take(10);
- * var timer2 = Rx.Observable.interval(2000).take(6);
- * var timer3 = Rx.Observable.interval(500).take(10);
- * var concurrent = 2; // the argument
- * var merged = timer1.merge(timer2, timer3, concurrent);
- * merged.subscribe(x => console.log(x));
- *
- * @see {@link mergeAll}
- * @see {@link mergeMap}
- * @see {@link mergeMapTo}
- * @see {@link mergeScan}
- *
- * @param {ObservableInput} other An input Observable to merge with the source
- * Observable. More than one input Observables may be given as argument.
- * @param {number} [concurrent=Number.POSITIVE_INFINITY] Maximum number of input
- * Observables being subscribed to concurrently.
- * @param {Scheduler} [scheduler=null] The IScheduler to use for managing
- * concurrency of input Observables.
- * @return {Observable} An Observable that emits items that are the result of
- * every input Observable.
- * @method merge
- * @owner Observable
- */
-function merge() {
-    var observables = [];
-    for (var _i = 0; _i < arguments.length; _i++) {
-        observables[_i - 0] = arguments[_i];
-    }
-    return function (source) { return source.lift.call(merge_1.merge.apply(void 0, [source].concat(observables))); };
-}
-var merge_4 = merge;
 var __extends$15 = (commonjsGlobal$1 && commonjsGlobal$1.__extends) || function (d, b) {
     for (var p in b)
         if (b.hasOwnProperty(p))
@@ -6321,6 +6278,8 @@ function isObject$1(item) {
     return (item && typeof item === 'object' && !Array.isArray(item));
 }
 function mergeDeep(target, source) {
+    target = JSON.parse(JSON.stringify(target));
+    source = JSON.parse(JSON.stringify(source));
     var output = Object.assign({}, target);
     if (isObject$1(target) && isObject$1(source)) {
         Object.keys(source).forEach(function (key) {
@@ -6616,7 +6575,7 @@ var TranslateService = (function () {
         },
         set: function (translations) {
             if (this.isolate) {
-                this._translations = translations;
+                this._currentLang = translations;
             }
             else {
                 this.store.translations = translations;
@@ -6791,7 +6750,7 @@ var TranslateService = (function () {
                         mergedObs = obs;
                     }
                     else {
-                        mergedObs = mergedObs.pipe(merge_4(obs));
+                        mergedObs = mergedObs.pipe(merge_2(obs));
                     }
                 }
                 return mergedObs.pipe(toArray_2(), map_2(function (arr) {
