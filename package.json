@@ -49,6 +49,7 @@
     "google-libphonenumber": "3.0.9"
   },
   "devDependencies": {
+    "npm-cli-login": "0.0.10",
     "@angular/cli": "1.6.0",
     "@angular/compiler-cli": "5.0.3",
     "@angular/language-service": "5.0.3",
