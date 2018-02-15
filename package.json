@@ -1,7 +1,18 @@
 {
-  "name": "angular-components",
-  "version": "0.0.0",
+  "name": "mv-angular-components",
+  "version": "1.0.0",
+  "author": {
+    "name": "MOVENTES",
+    "email": "dev@moventes.com"
+  },
+  "keywords": [
+    "angular"
+  ],
   "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/RnD-moventes/componentes/ionic-components/issues"
+  },
+  "homepage": "https://moventes.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng lint && ng serve",
@@ -9,16 +20,15 @@
     "test": "ng lint && ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "packagr": "ng-packagr -p ng-package.json && cd dist && yarn link",
+    "link": "yarn link mv-common-components && yarn install && ng-packagr -p ng-package.json && cd dist && yarn link",
+    "link:npm": "npm link mv-common-components && npm install && ng-packagr -p ng-package.json && cd dist && npm link",
+    "publish": "yarn install && ng-packagr -p ng-package.json && npm-cli-login -u moventes -p 5+5=Dix -e dev@moventes.com && npm publish dist",
+    "publish:npm": "npm install && ng-packagr -p ng-package.json && npm-cli-login -u moventes -p 5+5=Dix -e dev@moventes.com && npm publish dist",
     "compodoc": "./node_modules/.bin/compodoc -p tsconfig.json",
-    "compodoc-serve": "./node_modules/.bin/compodoc -s"
-  },
-  "private": true,
-  "directories": {
-    "bin": "./dist"
+    "compodoc-serve": "./node_modules/.bin/compodoc -s",
+    "ng-packagr": "ng-packagr -p ng-package.json"
   },
   "dependencies": {
-    "common-components": "git+https://gitlab.com/RnD-moventes/componentes/common-components.git",
     "@angular/animations": "^5.0.0",
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
@@ -33,10 +43,12 @@
     "@types/googlemaps": "^3.30.2",
     "core-js": "^2.4.1",
     "google-libphonenumber": "^3.0.9",
+    "mv-common-components": "^1.0.1",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
+    "npm-cli-login": "0.0.10",
     "@angular/cli": "1.5.3",
     "@angular/compiler-cli": "^5.0.0",
     "@angular/language-service": "^5.0.0",

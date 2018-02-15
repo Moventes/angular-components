@@ -2,48 +2,40 @@
 
 This ionic project hosts the angular-components library and provides a testing application for them.
 
-## Setup
+## To build the library and link it locally
 
 ```bash
-npm install
+npm run link
 ```
 
-The library uses `common-components`, so you may have to first install and link it
+This will create a `dist` directory which will be linked with npm
+
+## To build the library and publish it on NPM
 
 ```bash
-npm link common-components
+npm run publish
 ```
+
+WARNING: Don't forget to update the version (in package.json) before publishing it
+
+## To add the library to a project
+
+
+```bash
+npm install mv-ionic-components --save
+```
+
+or 
+
+```bash
+npm link mv-ionic-components
+```
+
 
 ## To run the application
 
 ```bash
 ng serve
-```
-
-## To build the library
-
-```bash
-npm run packagr
-```
-
-This will create a `dist` directory which may be linked or published with npm
-
-## To link the library once it is built
-
-```bash
-npm link
-```
-
-## TIP: commands can be chained with &&
-
-```bash
-npm install && npm run packagr && cd dist && npm link
-```
-
-## To add the library to a project
-
-```bash
-npm link angular-components
 ```
 
 ## Build documentation
