@@ -1,7 +1,7 @@
 import { Directive, forwardRef, ElementRef, Renderer2, HostListener, NgZone } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
-import { Address, AddressDetails } from 'common-components';
+import { Address, AddressDetails } from 'mv-common-components';
 
 /**
  * Google declaration provides access to Google maps api
@@ -28,12 +28,16 @@ declare var google: any;
  *   </label>
  * </form>
  */
+
+function returnAddress() {
+  return AddressInputDirective;
+}
 @Directive({
   selector: '[mvAddressInput]',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => AddressInputDirective),
+      useExisting: forwardRef(returnAddress),
       multi: true
     }
   ]
