@@ -24,15 +24,12 @@ const PhoneNumberFormat = libPhoneNumber.PhoneNumberFormat;
  * // model driven
  * <input formControlName="phone2" mvPhoneInput>
  */
-function returnPhone() {
-  return PhoneInputDirective;
-}
 @Directive({
   selector: '[mvPhoneInput]',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(returnPhone),
+      useExisting: forwardRef(() => PhoneInputDirective),
       multi: true
     }
   ]

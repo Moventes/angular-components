@@ -28,16 +28,12 @@ declare var google: any;
  *   </label>
  * </form>
  */
-
-function returnAddress() {
-  return AddressInputDirective;
-}
 @Directive({
   selector: '[mvAddressInput]',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(returnAddress),
+      useExisting: forwardRef(() => AddressInputDirective),
       multi: true
     }
   ]
