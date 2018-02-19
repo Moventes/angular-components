@@ -22,8 +22,8 @@
     "e2e": "ng e2e",
     "link": "yarn link mv-common-components && yarn install && ng-packagr -p ng-package.json && cd dist && yarn link",
     "link:npm": "npm link mv-common-components && npm install && ng-packagr -p ng-package.json && cd dist && npm link",
-    "publish": "yarn install && ng-packagr -p ng-package.json && npm-cli-login -u moventes -p 5+5=Dix -e dev@moventes.com && npm publish dist",
-    "publish:npm": "npm install && ng-packagr -p ng-package.json && npm-cli-login -u moventes -p 5+5=Dix -e dev@moventes.com && npm publish dist",
+    "publish": "yarn install && ng-packagr -p ng-package.json && echo \"Checking if you are logged in NPM registry (user: moventes, email: dev@moventes.com, pwd: *******)...\" && npm whoami && npm publish dist",
+    "publish:npm": "npm install && ng-packagr -p ng-package.json && echo \"Checking if you are logged in NPM registry (user: moventes, email: dev@moventes.com, pwd: *******)...\" && npm whoami && npm publish dist",
     "compodoc": "./node_modules/.bin/compodoc -p tsconfig.json",
     "compodoc-serve": "./node_modules/.bin/compodoc -s",
     "ng-packagr": "ng-packagr -p ng-package.json"
